@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Archive</title>
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800">
+
+<div class="mx-auto w-6/12">
+    <div class="text-center m-20 py-3 px-2">
+        <h1 class="text-6xl font-extrabold text-white pb-4">Music Archive</h1>
+        <img class="rounded-2xl mx-auto" src="https://media.tenor.co/images/bf102e55a9e1450c15f8221c18a11ffc/tenor.gif" />
+        <div>
+            <form method="POST" enctype="multipart/form-data" action="/">
+                <label class="mx-2 text-white">File to Upload:</label>
+                <input name="file" class="bg-black ring-1 ring-gray-800 text-white font-medium p-1 rounded-xl" type="file" />
+                <button class="bg-black ring-1 ring-gray-800 text-white font-medium p-1 my-2 text-2xl rounded-xl hover:bg-white hover:text-black" type="submit">Upload File</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="flex flex-col">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Song Name
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Audio
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                        <tr th:each="fileName : ${songFileNames}">
+                            <td th:text="${fileName}" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                Jane Cooper
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <audio controls>
+                                    <source th:src="${'https://musicarchivekody.sfo3.cdn.digitaloceanspaces.com/' + fileName}" type="audio/mpeg">
+                                    Your browser does not support audio element
+                                </audio>
+                            </td>
+                        </tr>
+
+                        <!-- More people... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
